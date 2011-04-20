@@ -11,25 +11,37 @@
 
 @implementation PrimesTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+@synthesize primesLabelGrid;
+
+- (id)init {
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PrimeCell"];
     if (self) {
-        // Initialization code.
+        startingValue = 1;
+        primesLabelGrid = [[NSMutableArray arrayWithCapacity:PRIMES_CELL_COUNT] retain];
+        
+        // Initialize our grid of cells.
+        for (NSInteger i = 0; i < PRIMES_CELL_COUNT; i++) {
+            PrimesLabel *label = [[[PrimesLabel alloc] init] autorelease];
+            [primesLabelGrid insertObject:label atIndex:i];
+            [self addSubview:label];
+        }
     }
+    
     return self;
 }
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setStartingValue:(NSInteger)aStartingValue {
+    startingValue = aStartingValue;
+    for (NSInteger i = 0; i < PRIMES_CELL_COUNT; i++) {
+        PrimesLabel *label = [primesLabelGrid objectAtIndex:i];
+        [label setValue:(i+startingValue)];
+    }
     
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state.
+    self.textLabel.text = @"Cell here";
 }
 
-
 - (void)dealloc {
+    [primesLabelGrid release];
     [super dealloc];
 }
 

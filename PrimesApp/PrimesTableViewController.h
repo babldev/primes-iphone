@@ -7,17 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
-typedef enum _IntegerPrimality {
-	IntegerUnknown = 0,
-	IntegerIsPrime = 1,
-	IntegerIsComposite = 2
-} IntegerPrimality;
+#import "PrimesSieve.h"
 
 @interface PrimesTableViewController : UITableViewController {
 	IntegerPrimality *primeData;
 	NSInteger primeDataRange;
+    
+    IBOutlet UIActivityIndicatorView *activityIndicator;
 }
 
 @end

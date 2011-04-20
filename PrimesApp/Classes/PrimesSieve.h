@@ -18,10 +18,10 @@ typedef enum _IntegerPrimality {
 
 
 @protocol PrimesSieveDelegate <NSObject>
+-(void)sieveCompleted;
 @optional
 -(void)sieveStarted;
 -(void)sievePaused;
--(void)sieveCompleted;
 @end
 
 

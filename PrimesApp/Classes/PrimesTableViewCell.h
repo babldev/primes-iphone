@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "PrimesSieve.h"
+#include "PrimesLabel.h"
+
+#define PRIMES_CELL_COUNT 100
+#define PRIMES_CELL_WIDTH 10
 
 @interface PrimesTableViewCell : UITableViewCell {
-    NSInteger value;
-    IntegerPrimality primality;
+    NSMutableArray *primesLabelGrid;
+    NSInteger startingValue;
 }
+
+- (void)setStartingValue:(NSInteger)aStartingValue;
+
+@property (readonly, retain) NSMutableArray *primesLabelGrid;
 
 @end

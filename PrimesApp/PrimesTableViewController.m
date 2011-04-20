@@ -7,7 +7,7 @@
 //
 
 #import "PrimesTableViewController.h"
-
+#import "PrimesTableViewCell.h"
 
 @implementation PrimesTableViewController
 
@@ -72,15 +72,15 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"PrimesCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PrimesTableViewCell *cell = (PrimesTableViewCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[PrimesTableViewCell alloc] init] autorelease];
     }
     
-    // Configure the cell...
-    [[cell textLabel] setText:@"Cell"];
+    // Configure the cell...]
+    [cell setStartingValue:([indexPath row] * PRIMES_CELL_COUNT)];
 	
     return cell;
 }

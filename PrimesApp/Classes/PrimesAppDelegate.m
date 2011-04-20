@@ -13,7 +13,8 @@
 
 @synthesize window;
 @synthesize viewController;
-
+@synthesize primeGenerator;
+@synthesize range;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -25,7 +26,12 @@
 	// Set the view controller as the window's root view controller and display.
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-
+    
+    range = 1000; // Default starting range.
+    primeGenerator = [[PrimesSieve alloc] initWithRange:range];
+    [primeGenerator setDelegate:self];
+    primeGeneratorOp = [[NSInvocationOperation alloc] initWithTarget:primeGenerator selector:@selector(startSieve) object:nil];
+    
     return YES;
 }
 
@@ -67,6 +73,11 @@
      */
 }
 
+#pragma mark -
+#pragma mark PrimesSieveDelegate
+-(void)sieveCompleted {
+    
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -81,6 +92,7 @@
 - (void)dealloc {
     [viewController release];
     [window release];
+    [primeGeneratorOp release];
     [super dealloc];
 }
 
