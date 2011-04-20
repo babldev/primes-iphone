@@ -12,7 +12,7 @@
 @implementation PrimesAppDelegate
 
 @synthesize window;
-@synthesize primesTableViewController;
+@synthesize viewController;
 
 
 #pragma mark -
@@ -23,7 +23,7 @@
     // Override point for customization after application launch.
 
 	// Set the view controller as the window's root view controller and display.
-    self.window.rootViewController = self.primesTableViewController;
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
     return YES;
@@ -79,7 +79,7 @@
 
 
 - (void)dealloc {
-    [primesTableViewController release];
+    [viewController release];
     [window release];
     [super dealloc];
 }

@@ -12,11 +12,11 @@
 
 @interface PrimesAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    PrimesTableViewController *primesTableViewController;
+    UIViewController *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet PrimesTableViewController *primesTableViewController;
+@property (nonatomic, retain) IBOutlet UIViewController *viewController;
 
 @end
 
