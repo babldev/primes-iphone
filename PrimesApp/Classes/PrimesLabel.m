@@ -14,10 +14,23 @@
 @synthesize value;
 @synthesize primality;
 
+- (id)initWithFrame:(CGRect)aRect {
+	if (self = [super initWithFrame:aRect]) {
+		self.textAlignment = UITextAlignmentCenter;
+	}
+	
+	return self;
+}
+
 - (void)setValue:(NSInteger)aValue {
     value = aValue;
     // Show only the last 2 digits of the number
-    self.text = [NSString stringWithFormat:@"%d", value % 100];
+	NSInteger displayDigits = value % 100;
+	if (displayDigits < 10) {
+		self.text = [NSString stringWithFormat:@"0%d", displayDigits];
+	} else {
+		self.text = [NSString stringWithFormat:@"%d", displayDigits];
+	}
 }
 
 - (void)setPrimality:(IntegerPrimality)aPrimality {
