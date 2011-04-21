@@ -9,11 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "PrimesSieve.h"
 
-@interface PrimesTableViewController : UITableViewController {
+@interface PrimesTableViewController : UITableViewController <PrimesSieveDelegate> {
 	IntegerPrimality *primeData;
 	NSInteger primeDataRange;
     
+    PrimesSieve *primeGenerator;
+    NSInteger range;
+    NSOperationQueue *operationQueue;
+    
     IBOutlet UIActivityIndicatorView *activityIndicator;
 }
+
+@property (nonatomic, retain, readonly) PrimesSieve *primeGenerator;
+@property (assign, readwrite) NSInteger range; 
 
 @end

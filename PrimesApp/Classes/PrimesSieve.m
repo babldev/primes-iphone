@@ -24,6 +24,8 @@
     if (rangeArray != nil) {
         free(rangeArray);
     }
+    range = aRange;
+    
     // We use calloc to init all elements in the array to IntegerUnprocessed.
     rangeArray = calloc(range + 1, sizeof(IntegerPrimality));
     // TODO: What if the malloc fails? We need to verify the range here.
@@ -41,7 +43,7 @@
     currentlySieving = 0;
     
     for (int i = 0; i <= range; i++) {
-        if (rangeArray[currentlySieving] != IntegerUnprocessed) {
+        if (rangeArray[i] != IntegerUnprocessed) {
             continue;
         }
         
@@ -51,10 +53,12 @@
         [primes addObject:[NSNumber numberWithInt:currentlySieving]];
         
         // Sieve through all multiples of the prime number.
-        for (int sieve = 0; sieve <= range; sieve += currentlySieving) {
+        for (int sieve = currentlySieving * 2; sieve <= range; sieve += currentlySieving) {
             rangeArray[sieve] = IntegerIsComposite;
         }
     }
+    
+    [delegate sieveCompleted];
 }
 
 -(void)pauseSieve {

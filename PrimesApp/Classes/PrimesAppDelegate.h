@@ -12,21 +12,13 @@
 
 @class PrimesTableViewController;
 
-@interface PrimesAppDelegate : NSObject <UIApplicationDelegate, PrimesSieveDelegate> {
+@interface PrimesAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     PrimesViewController *viewController;
-    
-    PrimesSieve *primeGenerator;
-    NSInteger range;
-    
-    NSOperation *primeGeneratorOp;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet PrimesViewController *viewController;
-
-@property (nonatomic, retain, readonly) PrimesSieve *primeGenerator;
-@property (assign, readwrite) NSInteger range; 
 
 @end
 

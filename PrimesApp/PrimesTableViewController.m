@@ -11,13 +11,24 @@
 
 @implementation PrimesTableViewController
 
+@synthesize primeGenerator;
+@synthesize range;
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    range = 10000000; // Default starting range.
+    primeGenerator = [[PrimesSieve alloc] initWithRange:range];
+    [primeGenerator setDelegate:self];
+    
+    operationQueue = [NSOperationQueue new];
+    NSInvocationOperation *primeGeneratorOp = [[NSInvocationOperation alloc] initWithTarget:primeGenerator selector:@selector(startSieve) object:nil];
+    [operationQueue addOperation:primeGeneratorOp];
+    [activityIndicator startAnimating];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
@@ -140,6 +151,11 @@
     */
 }
 
+#pragma mark -
+#pragma mark PrimesSieveDelegate
+-(void)sieveCompleted {
+    [activityIndicator stopAnimating];
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -159,6 +175,7 @@
 
 - (void)dealloc {
 	// free(primeData);
+    [operationQueue release];
     [super dealloc];
 }
 
