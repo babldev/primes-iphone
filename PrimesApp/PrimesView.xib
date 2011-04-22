@@ -45,7 +45,7 @@
 					<object class="IBUIView" id="161074617">
 						<reference key="NSNextResponder" ref="551327433"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 85}, {320, 331}}</string>
+						<string key="NSFrame">{{0, 75}, {320, 331}}</string>
 						<reference key="NSSuperview" ref="551327433"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -56,7 +56,7 @@
 					<object class="IBUITableView" id="870261840">
 						<reference key="NSNextResponder" ref="551327433"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 85}, {320, 341}}</string>
+						<string key="NSFrame">{{0, 75}, {320, 341}}</string>
 						<reference key="NSSuperview" ref="551327433"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -82,7 +82,7 @@
 							<object class="IBUILabel" id="735120787">
 								<reference key="NSNextResponder" ref="776336121"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 44}, {280, 41}}</string>
+								<string key="NSFrame">{{20, 44}, {280, 30}}</string>
 								<reference key="NSSuperview" ref="776336121"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -92,7 +92,7 @@
 								<string key="IBUIText">to see if it is prime!</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">17</double>
+									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor" id="114648401">
@@ -111,8 +111,9 @@
 								<reference key="NSSuperview" ref="776336121"/>
 								<int key="IBUIContentMode">3</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBBarStyle">2</int>
-								<string key="IBPlaceholder">Jump to an integer.</string>
+								<int key="IBBarStyle">1</int>
+								<string key="IBText"/>
+								<string key="IBPlaceholder">Type or tap an integer...</string>
 								<bool key="IBShowsCancelButton">YES</bool>
 								<object class="IBUITextInputTraits" key="IBTextInputTraits">
 									<int key="IBUIAutocorrectionType">1</int>
@@ -122,11 +123,11 @@
 								<reference key="IBScopeButtonTitles" ref="0"/>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 85}</string>
+						<string key="NSFrameSize">{320, 75}</string>
 						<reference key="NSSuperview" ref="551327433"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xNTMwNjEyMjQ1IDAuMTUzMDYxMjI0NSAwLjE1MzA2MTIyNDUgMC42AA</bytes>
+						<object class="NSColor" key="IBUIBackgroundColor" id="658344805">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -174,7 +175,6 @@
 						</object>
 						<string key="NSFrame">{{0, 416}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="551327433"/>
-						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIBarStyle">1</int>
@@ -210,10 +210,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MAA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="658344805"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -550,7 +547,6 @@
 							<string>primesVisualView</string>
 							<string>searchBar</string>
 							<string>selectedDetailView</string>
-							<string>selectedIntView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -558,7 +554,6 @@
 							<string>UITableView</string>
 							<string>PrimesVisualView</string>
 							<string>UISearchBar</string>
-							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -571,7 +566,6 @@
 							<string>primesVisualView</string>
 							<string>searchBar</string>
 							<string>selectedDetailView</string>
-							<string>selectedIntView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -593,10 +587,6 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">selectedDetailView</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">selectedIntView</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 						</object>

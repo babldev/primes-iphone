@@ -35,7 +35,7 @@ NSString *kDefaultDetailText = @"to see if it is prime!";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSInteger range = 100000; // Default starting range.
+    NSInteger range = 1000000; // Default starting range.
     primesSieve = [[PrimesSieve alloc] initWithRange:range];
     [primesSieve setDelegate:self];
     

@@ -25,34 +25,24 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef myContext = UIGraphicsGetCurrentContext();
     NSInteger width = 320;
-    NSInteger height = 480;
-    
+    NSInteger height = 331;
+    NSInteger pixels = width*height;
     // TODO: This is a dangerous call, we need to have a lock to avoid data races. Also, this code 
     // needs to be reorganized. Why is everything linking to the TableViewController?
     
     NSInteger *rangeDivisorsArray = [primesSieve rangeDivisorsArray];
     NSInteger range = [primesSieve range];
-    
-    
-    CGSize viewSize = self.bounds.size;
-    NSInteger screenPixels = viewSize.width * viewSize.height;
+    NSInteger pixelsUsed = (pixels < range) ? pixels : range;
     
     // If we have more data than pixels, we'll just take a subset of the data.
-    NSInteger dataStepSize = 1;
-    if (range > screenPixels) {
-        dataStepSize = range / screenPixels;
-    }
-
-    NSInteger pixel = 0;
-    for (NSInteger i = 1; i < range; i += dataStepSize) {
-        pixel++;
+    for (NSInteger p = 0; p < pixelsUsed; p++) {
         NSInteger colorSeed;
         NSInteger colorSeed2;
         NSInteger colorSeed3;
         CGFloat blue;
         CGFloat green;
         CGFloat red;
-        switch (rangeDivisorsArray[i]) {
+        switch (rangeDivisorsArray[p]) {
             case 0: // Unprocessed
                 // Black
                 CGContextSetRGBFillColor(myContext, 0.5, 0.5, 0.5, 1);
@@ -65,9 +55,9 @@
             default:
                 // Black-White gradient depending on divisor.
                 
-                colorSeed = rangeDivisorsArray[i] % 100;
-                colorSeed2 = rangeDivisorsArray[i] % 50;
-                colorSeed3 = rangeDivisorsArray[i] % 25;
+                colorSeed = rangeDivisorsArray[p] % 100;
+                colorSeed2 = rangeDivisorsArray[p] % 50;
+                colorSeed3 = rangeDivisorsArray[p] % 25;
                 red = ((CGFloat) colorSeed3 / 25) * 0.4;
                 blue = 0.3 + ((CGFloat) colorSeed / 100) * 0.7;
                 green = ((CGFloat) colorSeed2 / 50) * 0.4;
@@ -76,8 +66,8 @@
                 // CGContextSetRGBFillColor(myContext, 0, 0, 0, 1);
                 break;
         }
-        CGContextFillRect(myContext, CGRectMake(pixel % width,
-                                                pixel / height, 1, 1));
+        CGContextFillRect(myContext, CGRectMake(p % width,
+                                                p / height, 1, 1));
     }
 }
 
