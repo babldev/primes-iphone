@@ -58,11 +58,11 @@
         switch (rangeDivisorsArray[i]) {
             case 0: // Unprocessed
                 // Black
-                CGContextSetRGBFillColor(myContext, 0, 0, 0, 1);
+                CGContextSetRGBFillColor(myContext, 0.5, 0.5, 0.5, 1);
                 break;
             case 1: // Prime
                 // Blue
-                CGContextSetRGBFillColor(myContext, 0, 1.0, 0, 1);
+                CGContextSetRGBFillColor(myContext, 0, 0.9, 0, 1);
                 // CGContextSetRGBFillColor(myContext, 0, 0, 0.6+diff, 1);
                 break;
             default:

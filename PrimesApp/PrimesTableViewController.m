@@ -23,8 +23,8 @@
 	CGFloat viewWidth = self.tableView.bounds.size.width;
 	self.tableView.rowHeight = viewWidth;
 	self.tableView.allowsSelection = false;
-	
-    range = 1000000; // Default starting range.
+    
+    range = 200000; // Default starting range.
     primeGenerator = [[PrimesSieve alloc] initWithRange:range];
     [primeGenerator setDelegate:self];
     
