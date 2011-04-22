@@ -24,7 +24,6 @@
 @property (nonatomic, retain) IBOutlet UITableView *primesTableView;
 @property (nonatomic, retain) IBOutlet PrimesVisualView *primesVisualView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, retain) IBOutlet UILabel *selectedIntView;
 @property (nonatomic, retain) IBOutlet UILabel *selectedDetailView;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 

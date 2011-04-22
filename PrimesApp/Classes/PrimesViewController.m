@@ -15,12 +15,10 @@
 @synthesize primesTableView;
 @synthesize primesVisualView;
 @synthesize activityIndicator;
-@synthesize selectedIntView;
 @synthesize selectedDetailView;
 @synthesize searchBar;
 
-NSString *kDefaultTopText = @"Choose an integer";
-NSString *kDefaultBottomText = @"to see if it is prime!";
+NSString *kDefaultDetailText = @"to see if it is prime!";
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -67,8 +65,7 @@ NSString *kDefaultBottomText = @"to see if it is prime!";
     [numberFormatter setGroupingSeparator:@","];
     
     // Set up the initial text values for the info bar.
-    selectedIntView.text = kDefaultTopText;
-    selectedDetailView.text = kDefaultBottomText;
+    selectedDetailView.text = kDefaultDetailText;
     
     [operationQueue addOperation:primeGeneratorOp];
     [activityIndicator startAnimating];
@@ -110,11 +107,12 @@ NSString *kDefaultBottomText = @"to see if it is prime!";
 }
 
 - (IBAction)onResetView:(UIBarButtonItem *)sender {
+    // Hack to to zoom to the top.
     [primesTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     
     // Reset the text labels.
-    selectedIntView.text = kDefaultTopText;
-    selectedDetailView.text = kDefaultBottomText;
+    searchBar.text = nil;
+    selectedDetailView.text = kDefaultDetailText;
 }
 
 #pragma mark -
@@ -128,7 +126,7 @@ NSString *kDefaultBottomText = @"to see if it is prime!";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    return PRIMES_SECTION_ROWS;
 }
 
 
@@ -164,7 +162,6 @@ NSString *kDefaultBottomText = @"to see if it is prime!";
 #pragma mark integerSelectedNotification handler
 - (void)onIntSelectedNotification:(NSNotification *)notification {
     NSNumber *numberSelected = (NSNumber *) [notification object];
-    self.selectedIntView.text = [numberFormatter stringFromNumber:numberSelected];
     NSInteger intNumberSelected = [numberSelected intValue];
     NSInteger smallestDivisor = [primesSieve divisorForInt:intNumberSelected];
     

@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		411357141362303E00D71BA9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 411357131362303E00D71BA9 /* Icon.png */; };
 		4120368C135F4A22007D0968 /* PrimesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4120368B135F4A22007D0968 /* PrimesTableViewCell.m */; };
 		41203693135F4AFD007D0968 /* PrimesSieve.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203692135F4AFD007D0968 /* PrimesSieve.m */; };
 		41203701135F68DE007D0968 /* PrimesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203700135F68DE007D0968 /* PrimesLabel.m */; };
@@ -31,6 +32,7 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* PrimesApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesApp_Prefix.pch; sourceTree = "<group>"; };
+		411357131362303E00D71BA9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4120368A135F4A22007D0968 /* PrimesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesTableViewCell.h; sourceTree = "<group>"; };
 		4120368B135F4A22007D0968 /* PrimesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesTableViewCell.m; sourceTree = "<group>"; };
 		41203691135F4AFD007D0968 /* PrimesSieve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesSieve.h; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				411357131362303E00D71BA9 /* Icon.png */,
 				8524F36C135F1EFD005D8C0A /* PrimesView.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* PrimesApp-Info.plist */,
@@ -202,6 +205,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				8524F36E135F1EFD005D8C0A /* PrimesView.xib in Resources */,
+				411357141362303E00D71BA9 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
