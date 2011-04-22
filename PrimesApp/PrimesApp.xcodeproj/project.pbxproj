@@ -17,6 +17,7 @@
 		41203693135F4AFD007D0968 /* PrimesSieve.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203692135F4AFD007D0968 /* PrimesSieve.m */; };
 		41203701135F68DE007D0968 /* PrimesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203700135F68DE007D0968 /* PrimesLabel.m */; };
 		412037D5135F7AD9007D0968 /* PrimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 412037D3135F7AD9007D0968 /* PrimesViewController.m */; };
+		41203A6B13610DF9007D0968 /* PrimesVisualView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203A6A13610DF9007D0968 /* PrimesVisualView.m */; };
 		8524F36D135F1EFD005D8C0A /* PrimesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8524F36B135F1EFD005D8C0A /* PrimesTableViewController.m */; };
 		8524F36E135F1EFD005D8C0A /* PrimesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8524F36C135F1EFD005D8C0A /* PrimesView.xib */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,8 @@
 		41203700135F68DE007D0968 /* PrimesLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesLabel.m; sourceTree = "<group>"; };
 		412037D2135F7AD9007D0968 /* PrimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesViewController.h; sourceTree = "<group>"; };
 		412037D3135F7AD9007D0968 /* PrimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesViewController.m; sourceTree = "<group>"; };
+		41203A6913610DF9007D0968 /* PrimesVisualView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesVisualView.h; sourceTree = "<group>"; };
+		41203A6A13610DF9007D0968 /* PrimesVisualView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesVisualView.m; sourceTree = "<group>"; };
 		8524F36A135F1EFD005D8C0A /* PrimesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrimesTableViewController.h; path = ../PrimesTableViewController.h; sourceTree = "<group>"; };
 		8524F36B135F1EFD005D8C0A /* PrimesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrimesTableViewController.m; path = ../PrimesTableViewController.m; sourceTree = "<group>"; };
 		8524F36C135F1EFD005D8C0A /* PrimesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrimesView.xib; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 			children = (
 				41203691135F4AFD007D0968 /* PrimesSieve.h */,
 				41203692135F4AFD007D0968 /* PrimesSieve.m */,
+				41203A6913610DF9007D0968 /* PrimesVisualView.h */,
+				41203A6A13610DF9007D0968 /* PrimesVisualView.m */,
 			);
 			name = PrimeGenerator;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				41203693135F4AFD007D0968 /* PrimesSieve.m in Sources */,
 				41203701135F68DE007D0968 /* PrimesLabel.m in Sources */,
 				412037D5135F7AD9007D0968 /* PrimesViewController.m in Sources */,
+				41203A6B13610DF9007D0968 /* PrimesVisualView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

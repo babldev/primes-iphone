@@ -11,7 +11,7 @@
 
 @implementation PrimesSieve
 
-@synthesize range, rangeArray, primes, currentlySieving, delegate;
+@synthesize range, rangeDivisorsArray, primes, currentlySieving, delegate;
 
 -(id)initWithRange:(NSInteger)aRange {
     if (self = [super init]) {
@@ -21,40 +21,42 @@
 }
 
 -(void)resetWithRange:(NSInteger)aRange {
-    if (rangeArray != nil) {
-        free(rangeArray);
+    if (rangeDivisorsArray != nil) {
+        free(rangeDivisorsArray);
     }
     range = aRange;
-    
-    // We use calloc to init all elements in the array to IntegerUnprocessed.
-    rangeArray = calloc(range + 1, sizeof(IntegerPrimality));
+    // We add an extra element for simplicity.
     // TODO: What if the malloc fails? We need to verify the range here.
-    
-    range = aRange;
+    rangeDivisorsArray = malloc((range + 1) * sizeof(NSInteger));
     currentlySieving = 0;
 }
 
 -(void)startSieve {
-    if (range >= 2) {
-        // We'll just call 0 and 1 composite for simplicity.
-        rangeArray[0] = rangeArray[1] = IntegerIsComposite;
+    // Initialize the divisors of all integers to 0 aka Unprocessed.
+    for (NSInteger i = 0; i <= range; i++) {
+        rangeDivisorsArray[i] = 0;
     }
-    // TODO: This needs to be a concurrent operation.
-    currentlySieving = 0;
     
-    for (int i = 0; i <= range; i++) {
-        if (rangeArray[i] != IntegerUnprocessed) {
+    currentlySieving = 0;
+    // We'll start sieving with 2.
+    for (NSInteger i = 2; i <= range; i++) {
+        // Is this number unprocessed?
+        if (rangeDivisorsArray[i] != 0) {
             continue;
         }
         
         currentlySieving = i;
         // By definition, if no positive integer <= i divides i then i is prime.
-        rangeArray[currentlySieving] = IntegerIsPrime;
+        rangeDivisorsArray[i] = 1;
         [primes addObject:[NSNumber numberWithInt:currentlySieving]];
         
         // Sieve through all multiples of the prime number.
         for (int sieve = currentlySieving * 2; sieve <= range; sieve += currentlySieving) {
-            rangeArray[sieve] = IntegerIsComposite;
+            // Preserve the smallest divisor.
+            if (rangeDivisorsArray[sieve] > 1) {
+                continue;
+            }
+            rangeDivisorsArray[sieve] = currentlySieving;
         }
     }
     
@@ -64,8 +66,12 @@
 -(void)pauseSieve {
 }
 
+-(NSInteger)divisorForInt:(NSInteger)aInt {
+    return rangeDivisorsArray[aInt];
+}
+
 -(void)dealloc {
-    free(rangeArray);
+    free(rangeDivisorsArray);
     [primes release];
     [super dealloc];
 }

@@ -24,12 +24,14 @@
 	self.tableView.rowHeight = viewWidth;
 	self.tableView.allowsSelection = false;
 	
-    range = 10000000; // Default starting range.
+    range = 1000000; // Default starting range.
     primeGenerator = [[PrimesSieve alloc] initWithRange:range];
     [primeGenerator setDelegate:self];
     
     operationQueue = [NSOperationQueue new];
-    NSInvocationOperation *primeGeneratorOp = [[NSInvocationOperation alloc] initWithTarget:primeGenerator selector:@selector(startSieve) object:nil];
+    NSInvocationOperation *primeGeneratorOp = [[NSInvocationOperation alloc] initWithTarget:primeGenerator
+                                                                                   selector:@selector(startSieve)
+                                                                                     object:nil];
     [operationQueue addOperation:primeGeneratorOp];
     [activityIndicator startAnimating];
     
@@ -87,11 +89,12 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"PrimesCell";
+    static NSString *PrimesCellIdentifier = @"PrimesCell";
     
-    PrimesTableViewCell *cell = (PrimesTableViewCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PrimesTableViewCell *cell = (PrimesTableViewCell *) [tableView dequeueReusableCellWithIdentifier:PrimesCellIdentifier];
     if (cell == nil) {
-        cell = [[[PrimesTableViewCell alloc] init] autorelease];
+        cell = [[[PrimesTableViewCell alloc] initWithPrimesSieve:primeGenerator
+                                                 reuseIdentifier:PrimesCellIdentifier] autorelease];
     }
     
     // Configure the cell...]
@@ -102,7 +105,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	if (section == 0) {
-		return @"XX";
+		return @"0-99";
 	} else {
 		return [NSString stringWithFormat:@"%dXX", section];
 	}
@@ -115,6 +118,11 @@
 #pragma mark -
 #pragma mark PrimesSieveDelegate
 -(void)sieveCompleted {
+    // TODO: Use a global variable instead of directly giving the notification name.
+    NSNotification *sieveCompletedNotification =
+    [NSNotification notificationWithName:@"primeSieveUpdateNotification"
+                                  object:self];
+    [[NSNotificationCenter defaultCenter] postNotification:sieveCompletedNotification];
     [activityIndicator stopAnimating];
 }
 

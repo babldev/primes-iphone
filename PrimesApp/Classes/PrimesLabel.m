@@ -12,7 +12,7 @@
 @implementation PrimesLabel
 
 @synthesize value;
-@synthesize primality;
+@synthesize divisor;
 
 - (id)initWithFrame:(CGRect)aRect {
 	if (self = [super initWithFrame:aRect]) {
@@ -26,31 +26,35 @@
     value = aValue;
     // Show only the last 2 digits of the number
 	NSInteger displayDigits = value % 100;
-	if (displayDigits < 10) {
+	if (displayDigits < 10 && value >= 100) {
 		self.text = [NSString stringWithFormat:@"0%d", displayDigits];
 	} else {
 		self.text = [NSString stringWithFormat:@"%d", displayDigits];
 	}
 }
 
-- (void)setPrimality:(IntegerPrimality)aPrimality {
-    primality = aPrimality;
+- (void)setDivisor:(NSInteger)aDivisor {
+    divisor = aDivisor;
     UIColor *color = nil;
+    UIColor *bgColor = nil;
     
-    switch (primality) {
-        case IntegerUnprocessed:
+    switch (aDivisor) {
+        case 0: // Unprocessed
             color = [UIColor blackColor];
+            bgColor = [UIColor whiteColor];
             break;
-        case IntegerIsPrime:
-            color = [UIColor greenColor];
+        case 1: // Prime
+            color = [UIColor blackColor];
+            bgColor = [UIColor greenColor];
             break;
-        case IntegerIsComposite:
+        default: // Composite
             color = [UIColor grayColor];
-        default:
+            bgColor = [UIColor whiteColor];
             break;
     }
     
     self.textColor = color;
+    self.backgroundColor = bgColor;
 }
 
 - (void)dealloc {

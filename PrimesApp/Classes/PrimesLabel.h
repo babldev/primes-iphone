@@ -11,10 +11,10 @@
 
 @interface PrimesLabel : UILabel {
     NSInteger value;
-    IntegerPrimality primality;
+    NSInteger divisor;
 }
 
 @property (readwrite, assign) NSInteger value;
-@property (readwrite, assign) IntegerPrimality primality;
+@property (readwrite, assign) NSInteger divisor;
 
 @end

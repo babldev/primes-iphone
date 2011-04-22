@@ -10,7 +10,7 @@
 #import "PrimesSieve.h"
 
 @interface PrimesTableViewController : UITableViewController <PrimesSieveDelegate> {
-	IntegerPrimality *primeData;
+	NSInteger *rangeDivisorsArray;
 	NSInteger primeDataRange;
     
     PrimesSieve *primeGenerator;

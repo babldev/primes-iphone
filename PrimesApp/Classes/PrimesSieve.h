@@ -6,16 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#ifndef _PRIMESSIEVE_H
+#define _PRIMESSIEVE_H
+
 #import <Foundation/Foundation.h>
 
 @class PrimesSieve;
-
-typedef enum _IntegerPrimality {
-    IntegerUnprocessed  = 0,
-    IntegerIsPrime      = 1,
-    IntegerIsComposite  = 2
-} IntegerPrimality;
-
 
 @protocol PrimesSieveDelegate <NSObject>
 -(void)sieveCompleted;
@@ -28,7 +24,7 @@ typedef enum _IntegerPrimality {
 @interface PrimesSieve : NSObject {
     NSInteger range;
     
-    IntegerPrimality *rangeArray;
+    NSInteger *rangeDivisorsArray;
     NSMutableArray *primes;
     
     id <PrimesSieveDelegate> delegate;
@@ -36,15 +32,18 @@ typedef enum _IntegerPrimality {
 }
 
 @property (readonly, assign) NSInteger range;
-@property (readonly, assign) IntegerPrimality *rangeArray;
+@property (readonly, assign) NSInteger *rangeDivisorsArray;
 @property (readonly, retain) NSMutableArray *primes;
 @property (readonly, assign) NSInteger currentlySieving;
 @property (nonatomic, readwrite, assign) id <PrimesSieveDelegate> delegate;
 
 -(id)initWithRange:(NSInteger)aRange;
 -(void)resetWithRange:(NSInteger)aRange;
+-(NSInteger)divisorForInt:(NSInteger)aInt;
 
 -(void)startSieve;
 -(void)pauseSieve;
 
 @end
+
+#endif
