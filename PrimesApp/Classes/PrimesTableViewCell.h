@@ -10,8 +10,7 @@
 #include "PrimesLabel.h"
 #include "PrimesSieve.h"
 
-#define PRIMES_CELL_COUNT 100
-#define PRIMES_CELL_WIDTH 10
+#define PRIMES_CELL_COUNT 10
 
 @interface PrimesTableViewCell : UITableViewCell {
     NSMutableArray *primesLabelGrid;

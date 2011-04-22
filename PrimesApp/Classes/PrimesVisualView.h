@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "PrimesTableViewController.h"
+#include "PrimesSieve.h"
 
 @interface PrimesVisualView : UIView {
-    NSTimer *animationTimer;
+   // NSTimer *animationTimer;
+    PrimesSieve *primesSieve;
 }
 
-@property (nonatomic, assign) IBOutlet PrimesTableViewController *primesTableViewController;
+@property (assign, readwrite) PrimesSieve *primesSieve;
 
--(void)startAnimation;
--(void)stopAnimation;
+//-(void)startAnimation;
+//-(void)stopAnimation;
 
 @end

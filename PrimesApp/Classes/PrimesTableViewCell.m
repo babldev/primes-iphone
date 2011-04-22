@@ -10,7 +10,6 @@
 
 @implementation PrimesTableViewCell
 
-
 @synthesize primesLabelGrid;
 @synthesize primesSieve;
 
@@ -22,7 +21,7 @@
         
         CGFloat cellWidth = self.bounds.size.width;
         // TODO: This is hack, we are getting the wrong height for some reason.
-        CGFloat cellHeight = self.bounds.size.width;
+        CGFloat cellHeight = cellWidth / PRIMES_CELL_COUNT;
         
         startingValue = 1;
         primesLabelGrid = [[NSMutableArray arrayWithCapacity:PRIMES_CELL_COUNT] retain];
@@ -30,10 +29,10 @@
         // Initialize our grid of cells.
         for (NSInteger i = 0; i < PRIMES_CELL_COUNT; i++) {
 			CGRect frame = CGRectMake(
-                    (i % PRIMES_CELL_WIDTH) * (cellWidth / PRIMES_CELL_WIDTH), 
-                    (i / PRIMES_CELL_WIDTH) * (cellHeight / (PRIMES_CELL_COUNT / PRIMES_CELL_WIDTH)),
-                    cellWidth / PRIMES_CELL_WIDTH,
-                    cellHeight / (PRIMES_CELL_COUNT / PRIMES_CELL_WIDTH));
+                    i * (cellWidth / PRIMES_CELL_COUNT), 
+                    0,
+                    cellWidth / PRIMES_CELL_COUNT,
+                    cellHeight);
             PrimesLabel *label = [[[PrimesLabel alloc] initWithFrame:frame] autorelease];
             [primesLabelGrid insertObject:label atIndex:i];
 			
@@ -47,26 +46,6 @@
     }
     
     return self;
-}
-
-- (void)loadView {
-    CGFloat cellWidth = self.bounds.size.width;
-    // TODO: This is hack, we are getting the wrong height for some reason.
-    CGFloat cellHeight = self.bounds.size.width;
-
-    primesLabelGrid = [[NSMutableArray arrayWithCapacity:PRIMES_CELL_COUNT] retain];
-    // Initialize our grid of cells.
-    for (NSInteger i = 0; i < PRIMES_CELL_COUNT; i++) {
-        CGRect frame = CGRectMake(
-                                  (i % PRIMES_CELL_WIDTH) * (cellWidth / PRIMES_CELL_WIDTH), 
-                                  (i / PRIMES_CELL_WIDTH) * (cellHeight / (PRIMES_CELL_COUNT / PRIMES_CELL_WIDTH)),
-                                  cellWidth / PRIMES_CELL_WIDTH,
-                                  cellHeight / (PRIMES_CELL_COUNT / PRIMES_CELL_WIDTH));
-        PrimesLabel *label = [[[PrimesLabel alloc] initWithFrame:frame] autorelease];
-        [primesLabelGrid insertObject:label atIndex:i];
-        
-        [self addSubview:label];
-    }
 }
 
 - (void)setStartingValue:(NSInteger)aStartingValue {

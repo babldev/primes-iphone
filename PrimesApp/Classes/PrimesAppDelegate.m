@@ -7,7 +7,6 @@
 //
 
 #import "PrimesAppDelegate.h"
-#import "PrimesTableViewController.h"
 
 @implementation PrimesAppDelegate
 

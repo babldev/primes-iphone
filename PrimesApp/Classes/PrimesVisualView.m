@@ -11,13 +11,11 @@
 
 @implementation PrimesVisualView
 
-@synthesize primesTableViewController;
+@synthesize primesSieve;
 
 - (id)initWithFrame:(CGRect)frame {
-    
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code.
     }
     return self;
 }
@@ -32,9 +30,8 @@
     // TODO: This is a dangerous call, we need to have a lock to avoid data races. Also, this code 
     // needs to be reorganized. Why is everything linking to the TableViewController?
     
-    PrimesSieve *sieve = self.primesTableViewController.primeGenerator;
-    NSInteger *rangeDivisorsArray = [sieve rangeDivisorsArray];
-    NSInteger range = [sieve range];
+    NSInteger *rangeDivisorsArray = [primesSieve rangeDivisorsArray];
+    NSInteger range = [primesSieve range];
     
     
     CGSize viewSize = self.bounds.size;
@@ -84,6 +81,7 @@
     }
 }
 
+/*
 - (void)animateOnTimer:(NSTimer *)theTimer {
     [self setNeedsDisplay];
 }
@@ -100,10 +98,12 @@
         animationTimer = nil;
     }
 }
+*/
 
 - (void)dealloc {
-    [animationTimer invalidate];
-    [animationTimer release];
+    // [animationTimer invalidate];
+    // [animationTimer release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 

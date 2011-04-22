@@ -17,6 +17,13 @@
 - (id)initWithFrame:(CGRect)aRect {
 	if (self = [super initWithFrame:aRect]) {
 		self.textAlignment = UITextAlignmentCenter;
+        self.userInteractionEnabled = YES;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onIntSelectedNotification:)
+                                                     name:@"intSelectedNotification"
+                                                   object:nil];
+        self.highlightedTextColor = [UIColor redColor];
 	}
 	
 	return self;
@@ -40,21 +47,43 @@
     
     switch (aDivisor) {
         case 0: // Unprocessed
-            color = [UIColor blackColor];
-            bgColor = [UIColor whiteColor];
+            color = [UIColor grayColor];
+            bgColor = [UIColor clearColor];
             break;
         case 1: // Prime
             color = [UIColor blackColor];
             bgColor = [UIColor greenColor];
             break;
         default: // Composite
-            color = [UIColor grayColor];
-            bgColor = [UIColor whiteColor];
+            color = [UIColor whiteColor];
+            bgColor = [UIColor clearColor];
             break;
     }
     
-    self.textColor = color;
+    self.textColor = normalColor = color;
     self.backgroundColor = bgColor;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        if (touch.tapCount >= 1) {
+            // Let the app know this integer was selected.
+            NSNotification *intSelectedNotification = [NSNotification notificationWithName:@"intSelectedNotification" object:[NSNumber numberWithInt:self.value]];
+            [[NSNotificationQueue defaultQueue] enqueueNotification:intSelectedNotification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnName forModes:nil];
+            self.highlighted = YES;
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark integerSelectedNotification handler
+- (void)onIntSelectedNotification:(NSNotification *)notification {
+    NSNumber *numberSelected = (NSNumber *) [notification object];    
+    if ([numberSelected intValue] == self.value) {
+        self.highlighted = YES;
+    } else {
+        self.highlighted = NO;
+    }
 }
 
 - (void)dealloc {

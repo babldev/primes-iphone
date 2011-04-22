@@ -18,7 +18,6 @@
 		41203701135F68DE007D0968 /* PrimesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203700135F68DE007D0968 /* PrimesLabel.m */; };
 		412037D5135F7AD9007D0968 /* PrimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 412037D3135F7AD9007D0968 /* PrimesViewController.m */; };
 		41203A6B13610DF9007D0968 /* PrimesVisualView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203A6A13610DF9007D0968 /* PrimesVisualView.m */; };
-		8524F36D135F1EFD005D8C0A /* PrimesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8524F36B135F1EFD005D8C0A /* PrimesTableViewController.m */; };
 		8524F36E135F1EFD005D8C0A /* PrimesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8524F36C135F1EFD005D8C0A /* PrimesView.xib */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* PrimesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* PrimesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* PrimesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrimesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Primes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Primes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -42,8 +41,6 @@
 		412037D3135F7AD9007D0968 /* PrimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesViewController.m; sourceTree = "<group>"; };
 		41203A6913610DF9007D0968 /* PrimesVisualView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesVisualView.h; sourceTree = "<group>"; };
 		41203A6A13610DF9007D0968 /* PrimesVisualView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesVisualView.m; sourceTree = "<group>"; };
-		8524F36A135F1EFD005D8C0A /* PrimesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrimesTableViewController.h; path = ../PrimesTableViewController.h; sourceTree = "<group>"; };
-		8524F36B135F1EFD005D8C0A /* PrimesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrimesTableViewController.m; path = ../PrimesTableViewController.m; sourceTree = "<group>"; };
 		8524F36C135F1EFD005D8C0A /* PrimesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrimesView.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* PrimesApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PrimesApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,14 +62,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8524F36A135F1EFD005D8C0A /* PrimesTableViewController.h */,
-				8524F36B135F1EFD005D8C0A /* PrimesTableViewController.m */,
-				1D3623240D0F684500981E51 /* PrimesAppDelegate.h */,
-				1D3623250D0F684500981E51 /* PrimesAppDelegate.m */,
-				4120368D135F4A7D007D0968 /* PrimeGenerator */,
-				41203717135F6D5C007D0968 /* PrimesCell */,
 				412037D2135F7AD9007D0968 /* PrimesViewController.h */,
 				412037D3135F7AD9007D0968 /* PrimesViewController.m */,
+				1D3623240D0F684500981E51 /* PrimesAppDelegate.h */,
+				1D3623250D0F684500981E51 /* PrimesAppDelegate.m */,
+				41203E751361E209007D0968 /* Visualizations */,
+				4120368D135F4A7D007D0968 /* Sieve */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -80,7 +75,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* PrimesApp.app */,
+				1D6058910D05DD3D006BFB54 /* Primes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,18 +121,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4120368D135F4A7D007D0968 /* PrimeGenerator */ = {
+		4120368D135F4A7D007D0968 /* Sieve */ = {
 			isa = PBXGroup;
 			children = (
 				41203691135F4AFD007D0968 /* PrimesSieve.h */,
 				41203692135F4AFD007D0968 /* PrimesSieve.m */,
-				41203A6913610DF9007D0968 /* PrimesVisualView.h */,
-				41203A6A13610DF9007D0968 /* PrimesVisualView.m */,
 			);
-			name = PrimeGenerator;
+			name = Sieve;
 			sourceTree = "<group>";
 		};
-		41203717135F6D5C007D0968 /* PrimesCell */ = {
+		41203717135F6D5C007D0968 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				4120368A135F4A22007D0968 /* PrimesTableViewCell.h */,
@@ -145,7 +138,17 @@
 				412036FF135F68DE007D0968 /* PrimesLabel.h */,
 				41203700135F68DE007D0968 /* PrimesLabel.m */,
 			);
-			name = PrimesCell;
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		41203E751361E209007D0968 /* Visualizations */ = {
+			isa = PBXGroup;
+			children = (
+				41203717135F6D5C007D0968 /* TableViewCell */,
+				41203A6913610DF9007D0968 /* PrimesVisualView.h */,
+				41203A6A13610DF9007D0968 /* PrimesVisualView.m */,
+			);
+			name = Visualizations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +168,7 @@
 			);
 			name = PrimesApp;
 			productName = PrimesApp;
-			productReference = 1D6058910D05DD3D006BFB54 /* PrimesApp.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Primes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +214,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* PrimesAppDelegate.m in Sources */,
-				8524F36D135F1EFD005D8C0A /* PrimesTableViewController.m in Sources */,
 				4120368C135F4A22007D0968 /* PrimesTableViewCell.m in Sources */,
 				41203693135F4AFD007D0968 /* PrimesSieve.m in Sources */,
 				41203701135F68DE007D0968 /* PrimesLabel.m in Sources */,
@@ -233,7 +235,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrimesApp_Prefix.pch;
 				INFOPLIST_FILE = "PrimesApp-Info.plist";
-				PRODUCT_NAME = PrimesApp;
+				PRODUCT_NAME = Primes;
 			};
 			name = Debug;
 		};
@@ -245,7 +247,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrimesApp_Prefix.pch;
 				INFOPLIST_FILE = "PrimesApp-Info.plist";
-				PRODUCT_NAME = PrimesApp;
+				PRODUCT_NAME = Primes;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

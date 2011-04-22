@@ -12,6 +12,7 @@
 @interface PrimesLabel : UILabel {
     NSInteger value;
     NSInteger divisor;
+    UIColor *normalColor;
 }
 
 @property (readwrite, assign) NSInteger value;

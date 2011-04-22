@@ -7,12 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PrimesTableViewController.h"
+#import "PrimesSieve.h"
+#import "PrimesVisualView.h"
 
-@interface PrimesViewController : UIViewController {
+#define PRIMES_SECTION_ROWS 10
 
+@interface PrimesViewController : UIViewController
+        <PrimesSieveDelegate, UITableViewDataSource, UISearchBarDelegate> {
+    PrimesSieve *primesSieve;
+    NSOperationQueue *operationQueue;
+    NSNumberFormatter *numberFormatter;
 }
 
-@property (nonatomic, retain) IBOutlet PrimesTableViewController *primesTableViewController;
+@property (nonatomic, retain, readonly) PrimesSieve *primesSieve;
+
+@property (nonatomic, retain) IBOutlet UITableView *primesTableView;
+@property (nonatomic, retain) IBOutlet PrimesVisualView *primesVisualView;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) IBOutlet UILabel *selectedIntView;
+@property (nonatomic, retain) IBOutlet UILabel *selectedDetailView;
+@property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
+
+- (IBAction)onSwitchView:(UISegmentedControl *)sender;
+- (IBAction)onResetView:(UIBarButtonItem *)sender;
 
 @end
