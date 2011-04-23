@@ -53,17 +53,7 @@
                 // CGContextSetRGBFillColor(myContext, 0, 0, 0.6+diff, 1);
                 break;
             default:
-                // Black-White gradient depending on divisor.
-                
-                colorSeed = rangeDivisorsArray[p] % 100;
-                colorSeed2 = rangeDivisorsArray[p] % 50;
-                colorSeed3 = rangeDivisorsArray[p] % 25;
-                red = ((CGFloat) colorSeed3 / 25) * 0.4;
-                blue = 0.3 + ((CGFloat) colorSeed / 100) * 0.7;
-                green = ((CGFloat) colorSeed2 / 50) * 0.4;
-                CGContextSetRGBFillColor(myContext, red, green, blue, 1);
-                 
-                // CGContextSetRGBFillColor(myContext, 0, 0, 0, 1);
+                CGContextSetRGBFillColor(myContext, 0, 0, 0, 1);
                 break;
         }
         CGContextFillRect(myContext, CGRectMake(p % width,

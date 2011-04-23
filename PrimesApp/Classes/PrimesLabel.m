@@ -16,27 +16,34 @@
 
 - (id)initWithFrame:(CGRect)aRect {
 	if (self = [super initWithFrame:aRect]) {
-		self.textAlignment = UITextAlignmentCenter;
-        self.userInteractionEnabled = YES;
+        foregroundText = [[UILabel alloc] initWithFrame:self.bounds];
+        foregroundText.textAlignment = UITextAlignmentCenter;
+        foregroundText.userInteractionEnabled = YES;
+        foregroundText.highlightedTextColor = [UIColor redColor];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self
+        backgroundImg = [[UIImageView alloc] initWithFrame:CGRectMake(1, 2, self.bounds.size.width - 2, self.bounds.size.height - 2)];
+        NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"primebg" ofType:@"png"];
+        backgroundImg.image = [UIImage imageWithContentsOfFile:imagePath];
+        
+        [self addSubview:backgroundImg];
+        [self addSubview:foregroundText];
+        
+		[[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(onIntSelectedNotification:)
                                                      name:@"intSelectedNotification"
                                                    object:nil];
-        self.highlightedTextColor = [UIColor redColor];
 	}
 	
 	return self;
 }
-
 - (void)setValue:(NSInteger)aValue {
     value = aValue;
     // Show only the last 2 digits of the number
 	NSInteger displayDigits = value % 100;
 	if (displayDigits < 10 && value >= 100) {
-		self.text = [NSString stringWithFormat:@"0%d", displayDigits];
+		foregroundText.text = [NSString stringWithFormat:@"0%d", displayDigits];
 	} else {
-		self.text = [NSString stringWithFormat:@"%d", displayDigits];
+		foregroundText.text = [NSString stringWithFormat:@"%d", displayDigits];
 	}
 }
 
@@ -49,19 +56,22 @@
         case 0: // Unprocessed
             color = [UIColor grayColor];
             bgColor = [UIColor clearColor];
+            backgroundImg.hidden = YES;
             break;
         case 1: // Prime
             color = [UIColor blackColor];
-            bgColor = [UIColor greenColor];
+            bgColor = [UIColor clearColor];
+            backgroundImg.hidden = NO;
             break;
         default: // Composite
             color = [UIColor whiteColor];
             bgColor = [UIColor clearColor];
+            backgroundImg.hidden = YES;
             break;
     }
     
-    self.textColor = normalColor = color;
-    self.backgroundColor = bgColor;
+    foregroundText.textColor = normalColor = color;
+    foregroundText.backgroundColor = bgColor;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -70,7 +80,7 @@
             // Let the app know this integer was selected.
             NSNotification *intSelectedNotification = [NSNotification notificationWithName:@"intSelectedNotification" object:[NSNumber numberWithInt:self.value]];
             [[NSNotificationQueue defaultQueue] enqueueNotification:intSelectedNotification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnName forModes:nil];
-            self.highlighted = YES;
+            foregroundText.highlighted = YES;
         }
     }
 }
@@ -80,9 +90,9 @@
 - (void)onIntSelectedNotification:(NSNotification *)notification {
     NSNumber *numberSelected = (NSNumber *) [notification object];    
     if ([numberSelected intValue] == self.value) {
-        self.highlighted = YES;
+        foregroundText.highlighted = YES;
     } else {
-        self.highlighted = NO;
+        foregroundText.highlighted = NO;
     }
 }
 

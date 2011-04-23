@@ -19,6 +19,7 @@
 		41203701135F68DE007D0968 /* PrimesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203700135F68DE007D0968 /* PrimesLabel.m */; };
 		412037D5135F7AD9007D0968 /* PrimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 412037D3135F7AD9007D0968 /* PrimesViewController.m */; };
 		41203A6B13610DF9007D0968 /* PrimesVisualView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41203A6A13610DF9007D0968 /* PrimesVisualView.m */; };
+		4191AEF813626FD6006BC942 /* primebg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4191AEF713626FD6006BC942 /* primebg.png */; };
 		8524F36E135F1EFD005D8C0A /* PrimesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8524F36C135F1EFD005D8C0A /* PrimesView.xib */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		412037D3135F7AD9007D0968 /* PrimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesViewController.m; sourceTree = "<group>"; };
 		41203A6913610DF9007D0968 /* PrimesVisualView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesVisualView.h; sourceTree = "<group>"; };
 		41203A6A13610DF9007D0968 /* PrimesVisualView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesVisualView.m; sourceTree = "<group>"; };
+		4191AEF713626FD6006BC942 /* primebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = primebg.png; sourceTree = "<group>"; };
 		8524F36C135F1EFD005D8C0A /* PrimesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrimesView.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* PrimesApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PrimesApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4191AEF713626FD6006BC942 /* primebg.png */,
 				411357131362303E00D71BA9 /* Icon.png */,
 				8524F36C135F1EFD005D8C0A /* PrimesView.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -206,6 +209,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				8524F36E135F1EFD005D8C0A /* PrimesView.xib in Resources */,
 				411357141362303E00D71BA9 /* Icon.png in Resources */,
+				4191AEF813626FD6006BC942 /* primebg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

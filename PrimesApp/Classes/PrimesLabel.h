@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #include "PrimesSieve.h"
 
-@interface PrimesLabel : UILabel {
+@interface PrimesLabel : UIView {
     NSInteger value;
     NSInteger divisor;
     UIColor *normalColor;
+    
+    UILabel *foregroundText;
+    UIImageView *backgroundImg;
 }
 
 @property (readwrite, assign) NSInteger value;
