@@ -13,10 +13,15 @@
 
 @synthesize primesSieve;
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super initWithCoder:decoder]) {
+        // Register for integer selection notifications.
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onIntSelectedNotification:)
+                                                     name:@"intSelectedNotification"
+                                                   object:nil];
     }
+    
     return self;
 }
 
@@ -24,55 +29,64 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     CGContextRef myContext = UIGraphicsGetCurrentContext();
-    NSInteger width = 320;
-    NSInteger height = 331;
-    NSInteger pixels = width*height;
+    CGContextSetAllowsAntialiasing(myContext, false);
+    
     // TODO: This is a dangerous call, we need to have a lock to avoid data races. Also, this code 
     // needs to be reorganized. Why is everything linking to the TableViewController?
     
     NSInteger *rangeDivisorsArray = [primesSieve rangeDivisorsArray];
     NSInteger range = [primesSieve range];
-    NSInteger pixelsUsed = (pixels < range) ? pixels : range;
     
+    CGSize viewSize = self.bounds.size;
+    NSInteger width = viewSize.width;
+    NSInteger height = viewSize.height;
+    NSInteger pixels = width*height;
+    NSInteger pixelsUsed = (range < pixels) ? range : pixels;
+        
     // If we have more data than pixels, we'll just take a subset of the data.
-    for (NSInteger p = 0; p < pixelsUsed; p++) {
-        switch (rangeDivisorsArray[p]) {
-            case 0: // Unprocessed
-                // Black
-                CGContextSetRGBFillColor(myContext, 0.5, 0.5, 0.5, 1);
+    NSInteger p = 0;
+    for (NSInteger y = 0; y < height; y++) {
+        for (NSInteger x = 0; x < width; x++) {
+            if (p >= range) {
                 break;
-            case 1: // Prime
-                // Blue
+            }
+            if (rangeDivisorsArray[p] == 1) {
                 CGContextSetRGBFillColor(myContext, 0, 0.9, 0, 1);
-                // CGContextSetRGBFillColor(myContext, 0, 0, 0.6+diff, 1);
-                break;
-            default:
-                CGContextSetRGBFillColor(myContext, 0, 0, 0, 1);
-                break;
+                CGContextFillRect(myContext, CGRectMake(x, y, 1, 1));
+            }
+            p++;
         }
-        CGContextFillRect(myContext, CGRectMake(p % width,
-                                                p / height, 1, 1));
+    }
+    
+    // TODO: Fix this
+    NSInteger selectedInt = primesSieve.selectedInt;
+    if (selectedInt >= 0 && selectedInt <= pixelsUsed) {
+        // Draw red crosshair
+        CGContextSetRGBFillColor(myContext, 1, 0, 0, 0.8);
+        // Horizontal line
+        CGContextFillRect(myContext, CGRectMake(0, selectedInt / width, width, 1));
+        // Vertical line
+        CGContextFillRect(myContext, CGRectMake(selectedInt % width, 0, 1, height));
     }
 }
 
-/*
-- (void)animateOnTimer:(NSTimer *)theTimer {
+#pragma mark UIResponder
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        if (touch.tapCount >= 1) {
+            CGPoint point = [touch locationInView:self];
+            primesSieve.selectedInt = point.x + point.y * self.bounds.size.width;
+            break;
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark integerSelectedNotification handler
+- (void)onIntSelectedNotification:(NSNotification *)notification {
     [self setNeedsDisplay];
 }
 
--(void)startAnimation {
-    if (animationTimer == nil) {
-        animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.016 target:self selector:@selector(animateOnTimer) userInfo:nil repeats:YES];
-    }
-}
-
--(void)stopAnimation {
-    if (animationTimer != nil) {
-        [animationTimer invalidate];
-        animationTimer = nil;
-    }
-}
-*/
 
 - (void)dealloc {
     // [animationTimer invalidate];

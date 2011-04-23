@@ -10,6 +10,7 @@
 #import "PrimesSieve.h"
 #import "PrimesVisualView.h"
 
+#define PRIMES_SIEVE_RANGE 1000000
 #define PRIMES_SECTION_ROWS 10
 
 @interface PrimesViewController : UIViewController
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) IBOutlet UILabel *selectedDetailView;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, retain) IBOutlet UIScrollView *visualScrollView;
 
 - (IBAction)onSwitchView:(UISegmentedControl *)sender;
 - (IBAction)onResetView:(UIBarButtonItem *)sender;

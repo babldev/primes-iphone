@@ -17,25 +17,15 @@
 @synthesize activityIndicator;
 @synthesize selectedDetailView;
 @synthesize searchBar;
+@synthesize visualScrollView;
 
 NSString *kDefaultDetailText = @"to see if it is prime!";
-
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSInteger range = 1000000; // Default starting range.
+    NSInteger range = PRIMES_SIEVE_RANGE; // Default starting range.
     primesSieve = [[PrimesSieve alloc] initWithRange:range];
     [primesSieve setDelegate:self];
     
@@ -51,6 +41,10 @@ NSString *kDefaultDetailText = @"to see if it is prime!";
     
     // Set up PrimesVisualView
     primesVisualView.primesSieve = primesSieve;
+    CGFloat contentWidth = visualScrollView.bounds.size.width;
+    CGFloat contentHeight = range / contentWidth + 5; // Add some extra padding at the bottom.
+    primesVisualView.frame = CGRectMake(1, 1, contentWidth, contentHeight);
+    visualScrollView.contentSize = CGSizeMake(contentWidth, contentHeight);
     
     // Register for integer selection notifications.
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -70,14 +64,6 @@ NSString *kDefaultDetailText = @"to see if it is prime!";
     [operationQueue addOperation:primeGeneratorOp];
     [activityIndicator startAnimating];
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 #pragma mark -
 #pragma mark PrimesSieveDelegate
@@ -107,12 +93,8 @@ NSString *kDefaultDetailText = @"to see if it is prime!";
 }
 
 - (IBAction)onResetView:(UIBarButtonItem *)sender {
-    // Hack to to zoom to the top.
-    [primesTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    
     // Reset the text labels.
-    searchBar.text = nil;
-    selectedDetailView.text = kDefaultDetailText;
+    primesSieve.selectedInt = -1;
 }
 
 #pragma mark -
@@ -183,11 +165,19 @@ NSString *kDefaultDetailText = @"to see if it is prime!";
     }
     selectedDetailView.text = details;
     
-    if ([searchBar.text intValue] != intNumberSelected) {
+    if (intNumberSelected == -1) {
+        searchBar.text = nil; // Reset
+        selectedDetailView.text = kDefaultDetailText;
+        [primesTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        return;
+        // We're done here.
+    } else if ([searchBar.text intValue] != intNumberSelected) {
         searchBar.text = [numberSelected stringValue];
     }
+    
     NSInteger section = intNumberSelected / (PRIMES_SECTION_ROWS * PRIMES_CELL_COUNT);
-    NSInteger row = (intNumberSelected % (PRIMES_SECTION_ROWS * PRIMES_CELL_COUNT)) / PRIMES_SECTION_ROWS;
+    NSInteger row = (intNumberSelected % (PRIMES_SECTION_ROWS * PRIMES_CELL_COUNT)) /
+            PRIMES_SECTION_ROWS;
     [primesTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]
                            atScrollPosition:UITableViewScrollPositionTop
                                    animated:YES];
@@ -197,15 +187,12 @@ NSString *kDefaultDetailText = @"to see if it is prime!";
 #pragma mark UISearchBarDelegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSInteger intQuery = [searchText intValue];
-    if (intQuery >= 0 && intQuery <= primesSieve.range) {
-        NSNotification *intSelectedNotification =
-                [NSNotification notificationWithName:@"intSelectedNotification"
-                                              object:[NSNumber
-                                                      numberWithInt:intQuery]];
-        [[NSNotificationQueue defaultQueue] enqueueNotification:intSelectedNotification
-                                                   postingStyle:NSPostNow
-                                                   coalesceMask:NSNotificationCoalescingOnName
-                                                       forModes:nil];
+    if (intQuery >= 0 && intQuery < primesSieve.range) {
+        primesSieve.selectedInt = intQuery;
+    } else if (intQuery >= primesSieve.range) {
+        primesSieve.selectedInt = primesSieve.range - 1; // Auto correct if out of bounds.
+    } else if ([searchText isEqualToString:@""]) {
+        primesSieve.selectedInt = -1; // Reset
     }
 }
 

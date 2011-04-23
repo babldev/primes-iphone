@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "PrimesSieve.h"
+#import "PrimesSieve.h"
+
+@class PrimesViewController;
 
 @interface PrimesVisualView : UIView {
-   // NSTimer *animationTimer;
     PrimesSieve *primesSieve;
 }
 
 @property (assign, readwrite) PrimesSieve *primesSieve;
 
-//-(void)startAnimation;
-//-(void)stopAnimation;
 
 @end

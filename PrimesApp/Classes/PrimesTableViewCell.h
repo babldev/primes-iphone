@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "PrimesLabel.h"
-#include "PrimesSieve.h"
+#import "PrimesLabel.h"
+#import "PrimesSieve.h"
 
 #define PRIMES_CELL_COUNT 10
 
 @interface PrimesTableViewCell : UITableViewCell {
+    PrimesSieve* primesSieve;
     NSMutableArray *primesLabelGrid;
     NSInteger *rangePrimality;
     NSInteger startingValue;
@@ -23,7 +24,8 @@
 - (void)refreshCells;
 - (void)onPrimesSieveUpdateNotification:(NSNotification *)notification;
 
-@property (readonly, retain) NSMutableArray *primesLabelGrid;
 @property (readwrite, assign) PrimesSieve *primesSieve;
+@property (readonly, retain) NSMutableArray *primesLabelGrid;
+@property (readwrite, assign) NSInteger startingValue;
 
 @end

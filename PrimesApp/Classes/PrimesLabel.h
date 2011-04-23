@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "PrimesSieve.h"
+#import "PrimesSieve.h"
 
 @interface PrimesLabel : UIView {
     NSInteger value;
@@ -16,9 +16,15 @@
     
     UILabel *foregroundText;
     UIImageView *backgroundImg;
+    
+    BOOL highlighted;
+    
+    PrimesSieve *primesSieve;
 }
 
 @property (readwrite, assign) NSInteger value;
 @property (readwrite, assign) NSInteger divisor;
+@property (readwrite, assign) BOOL highlighted;
+@property (readwrite, assign) PrimesSieve *primesSieve;
 
 @end

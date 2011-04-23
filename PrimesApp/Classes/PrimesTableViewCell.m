@@ -12,6 +12,7 @@
 
 @synthesize primesLabelGrid;
 @synthesize primesSieve;
+@synthesize startingValue;
 
 - (id)initWithPrimesSieve:(PrimesSieve*)aPrimesSieve reuseIdentifier:(NSString*)aReuseIdentifier {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aReuseIdentifier];
@@ -34,6 +35,7 @@
                     cellWidth / PRIMES_CELL_COUNT,
                     cellHeight);
             PrimesLabel *label = [[[PrimesLabel alloc] initWithFrame:frame] autorelease];
+            label.primesSieve = primesSieve;
             [primesLabelGrid insertObject:label atIndex:i];
 			
             [self addSubview:label];

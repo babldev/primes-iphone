@@ -13,6 +13,8 @@
 
 @synthesize value;
 @synthesize divisor;
+@synthesize highlighted;
+@synthesize primesSieve;
 
 - (id)initWithFrame:(CGRect)aRect {
 	if (self = [super initWithFrame:aRect]) {
@@ -45,6 +47,17 @@
 	} else {
 		foregroundText.text = [NSString stringWithFormat:@"%d", displayDigits];
 	}
+    
+    self.highlighted = (primesSieve.selectedInt == value);
+}
+
+- (void)setHighlighted:(BOOL)aBool {
+    highlighted = aBool;
+    if (highlighted) {
+        foregroundText.highlighted = YES;
+    } else {
+        foregroundText.highlighted = NO;
+    }
 }
 
 - (void)setDivisor:(NSInteger)aDivisor {
@@ -77,10 +90,8 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
         if (touch.tapCount >= 1) {
-            // Let the app know this integer was selected.
-            NSNotification *intSelectedNotification = [NSNotification notificationWithName:@"intSelectedNotification" object:[NSNumber numberWithInt:self.value]];
-            [[NSNotificationQueue defaultQueue] enqueueNotification:intSelectedNotification postingStyle:NSPostNow coalesceMask:NSNotificationCoalescingOnName forModes:nil];
-            foregroundText.highlighted = YES;
+            primesSieve.selectedInt = value;
+            break;
         }
     }
 }
@@ -88,15 +99,12 @@
 #pragma mark -
 #pragma mark integerSelectedNotification handler
 - (void)onIntSelectedNotification:(NSNotification *)notification {
-    NSNumber *numberSelected = (NSNumber *) [notification object];    
-    if ([numberSelected intValue] == self.value) {
-        foregroundText.highlighted = YES;
-    } else {
-        foregroundText.highlighted = NO;
-    }
+    self.highlighted = (primesSieve.selectedInt == value);
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [foregroundText release];
     [backgroundImg release];
     [super dealloc];
