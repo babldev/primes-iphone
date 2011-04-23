@@ -97,6 +97,8 @@
 }
 
 - (void)dealloc {
+    [foregroundText release];
+    [backgroundImg release];
     [super dealloc];
 }
 

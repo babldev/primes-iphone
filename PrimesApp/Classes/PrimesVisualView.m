@@ -36,12 +36,6 @@
     
     // If we have more data than pixels, we'll just take a subset of the data.
     for (NSInteger p = 0; p < pixelsUsed; p++) {
-        NSInteger colorSeed;
-        NSInteger colorSeed2;
-        NSInteger colorSeed3;
-        CGFloat blue;
-        CGFloat green;
-        CGFloat red;
         switch (rangeDivisorsArray[p]) {
             case 0: // Unprocessed
                 // Black
